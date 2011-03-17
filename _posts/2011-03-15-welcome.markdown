@@ -1,0 +1,14 @@
+---
+layout: post
+title: Cold Boot
+categories:
+  - intro
+  - thanks
+---
+I'd like to give a special thanks to [James Hunt](http://ohthatjames.github.com/) who's blog I forked (its amazing how you can actually fork a blog). As well as the [inspiration](http://chrismdp.github.com/2009/12/jekyll/) to do so.
+
+I used to have a blog at blog.overflowbit.com however it ended up becoming malnourished and so I decided to shut it down.  One day I would like to set up a portfolio site at matthewbrunelle.com, however that would require having material to put in my portfolio. As of now I'm a high school senior for Rhode Island.  I'm applying for the [Google Summer of Code 2001](http://www.google-melange.com/), specifically with the [Python Software Foundation](http://www.python.org/psf/).  As such I needed a blog to post to and rather than set up a self hosted word-press install again I opted to try out [Jekyll](https://github.com/ciferkey/ciferkey.github.com).
+
+I can't wait to dig in to some real development!
+
+~Matt
