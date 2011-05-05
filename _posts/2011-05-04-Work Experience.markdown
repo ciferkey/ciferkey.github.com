@@ -1,14 +1,18 @@
 ---
 layout: post
-title: GSoC Applications
+title: Work Experience
 categories:
   - Django
   - Python
   - MongoDB
 ---
-**Ingress** I was in Cancun, on vacation, in the middle of sixth grade.  Rather than sit idle and soak up the sun I bought my first programming book and dove in.  Since then I have been a voracious reader when it comes to may area of okatu: computer science.  I have greatly increased my skill set.  The following is a brief over of a personal project I have been working on, that I indent to demonstrate abilities I have accrued so far.
+**Ingress**
 
-**Case Study** Project Goal #1 To develop a site that aggregates cross country race results, data mines them and presents them with insights.
+I was in Cancun, on vacation, in the middle of sixth grade.  Rather than sit idle and soak up the sun I bought my first programming book and dove in.  Since then I have been a voracious reader when it comes to may area of okatu: computer science.  I have greatly increased my skill set.  The following is a brief over of a personal project I have been working on, that I indent to demonstrate abilities I have accrued so far.
+
+**Case Study**
+
+Project Goal #1 To develop a site that aggregates cross country race results, data mines them and presents them with insights.
 Project Goal #2 To train myself in the use of several web technologies and development tools.
 
 Initially I began developing several separate components in python.  The first of which was an aggregator which would crawl the Rhode Island Track and Field website, pull the race results as text files, and store their contents in the database.
@@ -27,8 +31,12 @@ The final component I worked on was creating a web application with Django to di
 
 I was able to get free hosting on Ep.io (one of the current contenders for the Heroku of Python),  MongoLab and PostageApp. As well as a free student account on Github (its amazing what one can get for just asking)
 
-**What's Next** My next goal is to improve the quality and consistence of my code.  I am going to focus on study coding styles (specifically PEP 8), programming with more than one developer, bug tracking, ticket systems, basic web development and agile development.
+**What's Next**
 
-**Future Education** I will be attending the University of Massachusetts Amherst for Computer Science this coming Fall.
+My next goal is to improve the quality and consistence of my code.  I am going to focus on study coding styles (specifically PEP 8), programming with more than one developer, bug tracking, ticket systems, basic web development and agile development.
+
+**Future Education**
+
+I will be attending the University of Massachusetts Amherst for Computer Science this coming Fall.
 ~Matt
 
