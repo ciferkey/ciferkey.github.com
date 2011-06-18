@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Personal Project
+title: Super Pack
 categories:
   - Python
   - OSX
