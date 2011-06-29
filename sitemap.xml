@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+      <loc>http://blog.matthewbrunelle.com/atom.xml</loc>
+      <lastmod>2011-06-18</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/cv.html</loc>
+      <lastmod>2011-06-18</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/eden_atom.xml</loc>
+      <lastmod>2011-06-18</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/</loc>
+      <lastmod>2011-06-18</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/06/08/Superpack</loc>
+      <lastmod>2011-06-08</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/05/04/Personal_Project</loc>
+      <lastmod>2011-05-04</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/04/06/GSoC_Applications</loc>
+      <lastmod>2011-04-06</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/03/15/welcome</loc>
+      <lastmod>2011-03-15</lastmod>
+  </url>
+</urlset>
