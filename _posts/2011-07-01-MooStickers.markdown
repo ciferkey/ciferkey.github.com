@@ -9,7 +9,7 @@ A nice little surprise popped up in my RSS feeds today.  [BoingBoing](http://www
 
 I did manage to snag 52 free* Aperture Science themed stickers. Seems like win win to me.
 
-![Apature Science Moo Stickers](images/apature-science-moo-stickers.png)
+![Apature Science Moo Stickers](/images/apature-science-moo-stickers.png)
 
 \*Yes free. Not even shipping and handling.
 
