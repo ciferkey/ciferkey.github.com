@@ -15,4 +15,10 @@ It was an excellent night, with great food (the grilled cheese at AS220 is wonde
 
 ![You Spoony Bard!!](/images/you-spoony-bard.jpg)
 
+**Update**
+
+Providence Geek's added an [interview](http://www.providencegeeks.com/2011/08/02/providence-geeks-video-podcast-nick-napp-and-kevin-mowrer-of-moveablecode/) with the master minds behind MoveableCode.
+
+<embed src="http://blip.tv/play/AYLL5gAC" type="application/x-shockwave-flash" width="550" height="442" wmode="transparent" allowscriptaccess="always" allowfullscreen="true" ></embed>
+
 ~Matt
