@@ -8,8 +8,10 @@ categories:
 I'm a big fan of 8bit music. Not all chip tunes are created equal though. Some really stand out and show that a lot of care has been put into their design.  Music quality is also very import to me. Thats why I love [bandcamp](http://bandcamp.com/).  They have quite the collection of chiptunes, many of which are free, all of which are available in lossless form. Some of my favorites are:
 
  * [3 Flavors of 8bit](http://childhoodchords.bandcamp.com/album/3-flavors-of-8bit) by [Dainumo](http://www.last.fm/music/Dainumo), [Jeesh](http://www.last.fm/music/Jeesh), and [P SUS](http://www.last.fm/music/p.sus)
- * [ReMixes](http://insertrupee.halc9bit.com/) by Insert Rupee
+ * [ReMixes](http://insertrupee.halc9bit.com/) by [Insert Rupee](http://www.last.fm/music/Insert+Rupee)
  * [A Man Who Made A Choice](http://music.starshipamazing.com/album/a-man-who-made-a-choice) and [Ya'll Stop Bloggin'](http://music.starshipamazing.com/album/yall-stop-bloggin) by [Starship Amazing](http://www.last.fm/music/Starship+Amazing)
+ * [eightbit.me](http://music.torley.com/album/eightbit-me) by [Torley](http://www.last.fm/music/Torley+Wong)
+ * [Pixel Perfect LP](http://albums.halc9bit.com/album/pixel-perfect-lp) by [halc](http://www.last.fm/music/halc)
 
 **Bonus**:
 
