@@ -9,6 +9,7 @@ I'm a big fan of 8bit music. Not all chip tunes are created equal though. Some r
 
  * [3 Flavors of 8bit](http://childhoodchords.bandcamp.com/album/3-flavors-of-8bit) by [Dainumo](http://www.last.fm/music/Dainumo), [Jeesh](http://www.last.fm/music/Jeesh), and [P SUS](http://www.last.fm/music/p.sus)
  * [ReMixes](http://insertrupee.halc9bit.com/) by Insert Rupee
+ * [A Man Who Made A Choice](http://music.starshipamazing.com/album/a-man-who-made-a-choice) and [Ya'll Stop Bloggin'](http://music.starshipamazing.com/album/yall-stop-bloggin) by [Starship Amazing](http://www.last.fm/music/Starship+Amazing)
 
 **Bonus**:
 
