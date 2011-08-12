@@ -22,7 +22,7 @@ For Want You Gone go to sound -> music -> portal2_robots_ftw.wav
 
 They're both lossless and you can play them as is or convert it to flac. Getting the turret opera is a bit more involved. Its in a bink video file.
 
-    C:\Program Files (x86)\Steam\steamapps\common\portal 2\portal2\media
+    C:\Program Files (x86)\Steam\steamapps\common\portal 2\portal2\media\sp_30_a4_finale5.bik
     ~/Library/Application\ Support/Steam/SteamApps/common/portal\ 2/portal2/media/sp_30_a4_finale5.bik
 
 On Windows and OS X respectively. On Windows you can convert it with [RAD Video Tools](http://www.radgametools.com/bnkdown.htm). You can play them on OS X. Thanks to the [Steam Forums](http://forums.steampowered.com/forums/showthread.php?t=1854268) for how to solve this one.
