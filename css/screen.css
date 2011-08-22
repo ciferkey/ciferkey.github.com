@@ -6,7 +6,7 @@ body {
   margin-top: 20px;
 }
 
-h1, h2 {
+h1, h2, div a, div a img, div span {
   text-align: center;
 }
 
