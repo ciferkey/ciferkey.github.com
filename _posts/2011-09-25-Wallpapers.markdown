@@ -8,13 +8,13 @@ categories:
 
 I love curating my wallpaper collection.  A few are ones I have made myself, but most of them have been collected from the far reaches of the internet. The ones I have made are:
 
-<img src="/images/compiling.jpg" width="25%" height="25%">Rendering</img>
+<img src="/images/compiling.jpg" width="25%" height="50%">Rendering</img>
 I made this image based on [XKCD Comic #303](http://xkcd.com/303/) but edited it to apply to my high school communications class.
 
-<img src="/images/flagranterror.jpg" width="25%" height="25%">Flagrant System Error</img>
+<img src="/images/flagranterror.jpg" width="25%" height="50%">Flagrant System Error</img>
 This was based off a screen shot I found of [Strongbad Email #118 "Virus"](http://www.homestarrunner.com/sbemail118.html). I added extra space around it to fix my desktop resolution.
 
-<img src="/images/Studio-Ghibli.png" width="25%" height="25%">Studio Ghibli</img>
+<img src="/images/Studio-Ghibli.png" width="25%" height="50%">Studio Ghibli</img>
 This was based off of a screen shot I made from the opening of the movie Ponyo, by the lovely studio Ghibli.  I added some more space around the boarder to fix the resolution to match my desktop.
 
 Here is a [dropbox gallery](https://www.dropbox.com/gallery/1667359/1/Wallpapers?h=c05e49) of the entire collection.  I'll try my best to give credit to whom credit is due.  Luckily Google Image Search can do [search by image](http://www.google.com/insidesearch/searchbyimage.html). Its amazing really.  It works well enough that it will actually match my heavily edited "Rendering" image to not only the original XKCD comic, but [this image](http://phloatingman.wordpress.com/2010/11/08/video-rendering-xkcd-compiling-remix/) of the exact same concept as mine!
