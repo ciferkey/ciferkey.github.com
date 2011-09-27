@@ -1,6 +1,0 @@
----
-layout: post
-title: Bragging Rights
-categories:
-  - experience
----
