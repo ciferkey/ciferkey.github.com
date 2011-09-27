@@ -8,10 +8,10 @@ categories:
 
 I love curating my wallpaper collection.  A few are ones I have made myself, but most of them have been collected from the far reaches of the internet. The ones I have made are:
 
-<img src="/images/compiling.jpg" width="423px" height="263px">Rendering</img>
+<img src="/images/my-videos-rendering.jpg" width="423px" height="263px">Rendering</img>
 I made this image based on [XKCD Comic #303](http://xkcd.com/303/) but edited it to apply to my high school communications class.
 
-<img src="/images/flagranterror.jpg" width="423px" height="263px">Flagrant System Error</img>
+<img src="/images/strongbad-flagrant-system-error.jpg" width="423px" height="263px">Strongbad Flagrant System Error</img>
 This was based off a screen shot I found of [Strongbad Email #118 "Virus"](http://www.homestarrunner.com/sbemail118.html). I added extra space around it to fix my desktop resolution.
 
 <img src="/images/Studio-Ghibli.png" width="423px" height="263px">Studio Ghibli</img>
