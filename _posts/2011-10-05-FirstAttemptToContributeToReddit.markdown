@@ -2,8 +2,8 @@
 layout: post
 title: Installing Reddit From Source.
 categories:
-  - wallpapers
-  - portal
+  - Reddit
+  - Python
 ---
 
 You may want to check out my post on [installing Reddit for testing](/InstallReddit).
