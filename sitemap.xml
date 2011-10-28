@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+      <loc>http://blog.matthewbrunelle.com/about.html</loc>
+      <lastmod>2011-09-27</lastmod>
+  </url>
+  <url>
       <loc>http://blog.matthewbrunelle.com/atom.xml</loc>
       <lastmod>2011-06-18</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/books.html</loc>
+      <lastmod>2011-09-27</lastmod>
   </url>
   <url>
       <loc>http://blog.matthewbrunelle.com/eden_atom.xml</loc>
       <lastmod>2011-06-18</lastmod>
   </url>
   <url>
+      <loc>http://blog.matthewbrunelle.com/feeds.html</loc>
+      <lastmod>2011-09-27</lastmod>
+  </url>
+  <url>
       <loc>http://blog.matthewbrunelle.com/</loc>
       <lastmod>2011-07-01</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/subreddits.html</loc>
+      <lastmod>2011-09-27</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/10/28/HaskellNirvana</loc>
+      <lastmod>2011-10-28</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/10/24/ParasailAlpha2</loc>
+      <lastmod>2011-10-24</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/10/13/Mannconomy</loc>
+      <lastmod>2011-10-13</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/10/05/InstallReddit</loc>
+      <lastmod>2011-10-05</lastmod>
+  </url>
+  <url>
+      <loc>http://blog.matthewbrunelle.com/2011/10/05/FirstAttemptToContributeToReddit</loc>
+      <lastmod>2011-10-05</lastmod>
   </url>
   <url>
       <loc>http://blog.matthewbrunelle.com/2011/09/25/Wallpapers</loc>
@@ -55,21 +91,5 @@
   <url>
       <loc>http://blog.matthewbrunelle.com/2011/03/15/welcome</loc>
       <lastmod>2011-03-15</lastmod>
-  </url>
-  <url>
-      <loc>http://blog.matthewbrunelle.com/2011/03/14/bragging</loc>
-      <lastmod>2011-03-14</lastmod>
-  </url>
-  <url>
-      <loc>http://blog.matthewbrunelle.com/2011/03/14/RecommenedRss</loc>
-      <lastmod>2011-03-14</lastmod>
-  </url>
-  <url>
-      <loc>http://blog.matthewbrunelle.com/2011/03/14/RecommenedPrograms</loc>
-      <lastmod>2011-03-14</lastmod>
-  </url>
-  <url>
-      <loc>http://blog.matthewbrunelle.com/2011/03/14/RecommenedBooks</loc>
-      <lastmod>2011-03-14</lastmod>
   </url>
 </urlset>
