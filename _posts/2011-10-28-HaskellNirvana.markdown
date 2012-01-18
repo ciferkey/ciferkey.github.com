@@ -12,6 +12,8 @@ Haskell is tough, and I love that about it. It forces you to take your time, in 
  -   [Real World Haskell](http://book.realworldhaskell.org/read/)
  -   [Ninety-Nine Haskell Problems](http://www.haskell.org/haskellwiki/H-99:_Ninety-Nine_Haskell_Problems)
  -   [OpenGl Practice](https://github.com/dagit/nehe-tuts)
+ -   [Haskell Monads](http://unknownparallel.com/monads.php)
+ -   [What is a monad?](http://jpembeddedsolutions.files.wordpress.com/2011/11/monads.pdf)
 
 ~Matt
 
