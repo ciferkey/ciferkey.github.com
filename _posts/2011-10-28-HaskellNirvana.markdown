@@ -14,6 +14,8 @@ Haskell is tough, and I love that about it. It forces you to take your time, in 
  -   [OpenGl Practice](https://github.com/dagit/nehe-tuts)
  -   [Haskell Monads](http://unknownparallel.com/monads.php)
  -   [What is a monad?](http://jpembeddedsolutions.files.wordpress.com/2011/11/monads.pdf)
+http://cdsmith.wordpress.com/2012/04/18/why-do-monads-matter/
+http://softwaresimply.blogspot.com/2012/04/less-travelled-monad-tutorial-part-1.html
 
 ~Matt
 
