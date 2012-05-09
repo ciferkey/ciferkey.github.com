@@ -17,6 +17,6 @@ The Portal 2 map editor was released today and I was wondering how it could be u
 
 >I choose to use block buttons for inputs and lasters for outputs, but the choice is arbitrary. Any of the inputs and outputs should work.
 
-Thoughts comments suggestions?
+Thoughts comments suggestions? I posted this same brain dump on [reddit](http://www.reddit.com/r/compsci/comments/tdul2/any_portal_2_fans_thoughts_on_computability_in/) if thats your cup of tea.
 
 ~Matt
