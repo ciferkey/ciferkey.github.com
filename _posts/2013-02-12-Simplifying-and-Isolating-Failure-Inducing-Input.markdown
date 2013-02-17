@@ -14,7 +14,7 @@ This semester I am currently enrolled in a one credit honors extension to my SE 
 “...generalizes and simplifies the failing test case to a minimal test case that still produces the failure” by repeatedly dividing the test case to isolate a locally minimal (1-minimal) input.
 
 ## How well did it work?
-Three test cases were presented:  In the GCC case study the improved version DD required only 59 tests and points to a relative difference of only two characters.  The fuzzed unix input case study saw a similar size reduction as well.  The firefox case study was able to reduce a complex description and large (40K character) html document down to a handful of x events and “<select>”.
+Three test cases were presented:  In the GCC case study the improved version DD required only 59 tests and points to a relative difference of only two characters.  The fuzzed unix input case study saw a similar size reduction as well.  The firefox case study was able to reduce a complex description and large (40K character) html document down to a handful of x events and “\<select\>”.
 
 ## Related Work
 While it is common to manually apply the divide and conquer approach to isolate failures, at the time of writing there were no other automated approaches to simplifying real test cases.  However Slutz had described and automated approach for artificially produced test cases in his work on stress testing databases.
