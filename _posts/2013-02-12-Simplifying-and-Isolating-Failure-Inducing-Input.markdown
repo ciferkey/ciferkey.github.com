@@ -1,6 +1,6 @@
 ---
 layout: post
-title: H320 Research Paper Response: Simplifying and Isolating Failure-Inducing Input
+title: H320 Research Paper Response - Simplifying and Isolating Failure-Inducing Input
 categories:
   - University
 ---
