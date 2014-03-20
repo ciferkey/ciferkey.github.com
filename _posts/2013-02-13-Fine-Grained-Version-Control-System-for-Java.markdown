@@ -22,6 +22,6 @@ Kim an Notkin provided a method for one-to-one matching techniques (based off sy
 Fine-grained VCS can provide valuable information about software systems, such as historical changes to the code base and the evolution of the system. The fact that it can be implemented on top of existing VCS using pre existing changesets means it can be applied to previously existing projects.
 
 ## Questions
-Do certain languages lend themselves better for fine grained tracking? (For example haskell is quite concise and fits quite a lot of information into only a few lines).
+Do certain languages lend themselves better for fine grained tracking? (For example Haskell is quite concise and fits quite a lot of information into only a few lines).
 
 ~ Matt
