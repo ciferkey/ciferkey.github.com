@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: H320 Research Paper Response - Fine-Grained Version Control System for Java
 categories:
   - University

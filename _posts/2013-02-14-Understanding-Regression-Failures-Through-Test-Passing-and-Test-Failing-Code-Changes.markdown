@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: H320 Research Paper Response - Understanding Regression Failures Through Test-Passing and Test-Failing Code Changes
 categories:
   - University
