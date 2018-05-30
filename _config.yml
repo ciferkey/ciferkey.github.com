@@ -54,7 +54,7 @@ search: true
 author:
   name   : "Matthew Brunelle"
   avatar : "/images/portrait.jpg"
-  bio    : "I spend money on a domain name so need to use it."
+  bio    : "I spent money on a domain name so I need to use it."
   # email  : # optional
   # uri    : "http://your-site.com"
   # home   : # null (default), "absolute or relative url to link to author home"
