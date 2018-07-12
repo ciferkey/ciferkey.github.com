@@ -52,6 +52,9 @@ analytics:
 
 search: true
 
+comments:
+  provider: google-plus
+
 author:
   name   : "Matthew Brunelle"
   avatar : "/images/portrait.jpg"
