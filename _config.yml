@@ -53,7 +53,9 @@ analytics:
 search: true
 
 comments:
-  provider: google-plus
+  provider: "disqus"
+  disqus:
+    shortname: "blog-matthewbrunelle-com"
 
 author:
   name   : "Matthew Brunelle"
