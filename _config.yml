@@ -58,6 +58,8 @@ defaults:
     values:
       comments: true
 
+minimal_mistakes_skin: dark
+
 comments:
   provider: "disqus"
   disqus:
