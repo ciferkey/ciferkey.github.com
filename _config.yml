@@ -49,13 +49,21 @@ analytics:
   provider: "google-gtag"
   google:
     tracking_id: "UA-118775518-1"
-
-search: true
+    
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      comments: true
 
 comments:
   provider: "disqus"
   disqus:
     shortname: "blog-matthewbrunelle-com"
+    
+search: true
 
 author:
   name   : "Matthew Brunelle"
