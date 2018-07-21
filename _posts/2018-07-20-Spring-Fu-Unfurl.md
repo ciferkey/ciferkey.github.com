@@ -1,5 +1,6 @@
 ---
 layout: single
+classes: wide
 title: "Spring Fu Mini Project: Link Unfurling API"
 categories:
   - Projects
