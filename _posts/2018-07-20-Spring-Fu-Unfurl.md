@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Spring Fu Mini Project: Link Unfurling API
+title: "Spring Fu Mini Project: Link Unfurling API"
 categories:
   - Projects
 ---
