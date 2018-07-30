@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-title: "Kotlin Bencode Decoding and Encoding [Weekend Project]"
+title: "Kotlin Bencode Decoding and Encoding"
 categories:
   - Projects
 ---
