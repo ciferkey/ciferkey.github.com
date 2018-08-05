@@ -10,7 +10,7 @@ As a fun weekend project I tried my hand at rolling an encoder/decoder for [Benc
 
 The specification for how Bencoding works is defined in [The BitTorrent Protocol Specification v2](http://www.bittorrent.org/beps/bep_0052.html) (which supersedes the [v1 specification](http://www.bittorrent.org/beps/bep_0003.html)). The section defining bencoding states:
 
-*Decoding*
+### Decoding
 
 > * Strings are length-prefixed base ten followed by a colon and the string. For example 4:spam corresponds to 'spam'.
 > * Integers are represented by an 'i' followed by the number in base 10 followed by an 'e'. For example i3e corresponds to 3 and i-3e corresponds to -3. Integers have no size limitation. i-0e is invalid. All encodings with a leading zero, such as i03e, are invalid, other than i0e, which of course corresponds to 0.
@@ -37,7 +37,7 @@ The upside of this approach is it requires no backtracking and only needs to loo
 
 <script src="https://gist.github.com/ciferkey/6782be7119a92f74feba1bebeba3218a.js"></script>
 
-*Internal Representation*
+### Internal Representation
 
 Internally I chose to represent the becoded information as an ADT using a [sealed class](https://kotlinlang.org/docs/reference/sealed-classes.html). Here is a simplified version of it (omitting methods):
 
@@ -47,7 +47,7 @@ Additionally I wanted to try and produce meaningful error information when decod
 
 <script src="https://gist.github.com/ciferkey/5fa44c91ff395666d440fff9e3ac3e30.js"></script>
 
-*Encoding*
+### Encoding
 
 In comparison to decoding the encoding process is even simpler:
 * for a string prepend the length on the string with a ':' separating them
@@ -55,6 +55,6 @@ In comparison to decoding the encoding process is even simpler:
 * for a list recursively encode the list elements, concatenate them and wrap them in an 'l' and 'e'
 * for a dictionary recursively encode the key value pairs, concatenate them and wrap them in an 'd' and 'e'
 
-*Testing*
+### Testing
 
 As far as testing the decoding and encoding I found example torrent files from the Webtorrent [Testing Fixtures](https://github.com/webtorrent/webtorrent-fixtures) project which are available for use under Creative Commons. This was a great way to test real world example of bencoded data. On large file in particular even revealed a performance problem around bencode string parsing.
