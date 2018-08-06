@@ -2,6 +2,7 @@
 layout: single
 classes: wide
 title: "Spring Fu Test Project: Link Unfurling Service"
+description: "A example project to test out Spring Fu by creatinga link unfurling service."
 categories:
   - Projects
 ---
