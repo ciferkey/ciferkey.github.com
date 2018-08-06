@@ -2,6 +2,7 @@
 layout: single
 classes: wide
 title: "Kotlin Bencode Decoding and Encoding"
+description: "Implementing a torrent bencode encoder and decoder in Kotlin."
 categories:
   - Projects
 ---
