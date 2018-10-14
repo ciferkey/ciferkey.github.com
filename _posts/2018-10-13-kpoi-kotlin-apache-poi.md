@@ -7,13 +7,6 @@ categories:
   - Projects
 ---
 
-<style type="text/css">
-  .gist-meta {
-    display: none;
-  }
-</style>
-
-
 Sometimes in my line of work I have the *please* of trying to programmatically generate spreadsheets or get to work on someone else's code which generates spreadsheets. In Java land the go to library for doing this is [Apache POI](https://poi.apache.org/). The API for generating spreadsheets is very imperative and side effect based. I could not help be curious about what it might look like if the API was re-imagined with a [Domain Specific Language](https://martinfowler.com/books/dsl.html) written in [Kotlin](https://kotlinlang.org/). So I decided like most normal humans would to spend a couple weekends writing code that helps generate spreadsheets. 
 
 ### What is a DSL?
@@ -169,3 +162,9 @@ An unfortunate aspect of Apache POI is that none of the classes implement Equals
 
 ### Potential future work
 Note that this DSL is specifically designed to cover declaratively creating workbooks. It has nothing to do with reading in notebooks and manipulating which is another use case for Apache POI. That is because I have primarily used it to generate workbooks. I still there is interesting work that could be done around read side as well to make it more pleasant.
+
+<style type="text/css">
+  .gist-meta {
+    display: none;
+  }
+</style>
