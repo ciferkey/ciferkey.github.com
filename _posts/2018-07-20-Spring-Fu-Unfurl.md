@@ -7,12 +7,6 @@ categories:
   - Projects
 ---
 
-<style type="text/css">
-  .gist-meta {
-    display: none;
-  }
-</style>
-
 > Every programmer occasionally, when nobody’s home, turns off the lights, pours a glass of scotch, puts on some light German electronica, and opens up a file on their computer. It’s a different file for every programmer. Sometimes they wrote it, sometimes they found it and knew they had to save it. They read over the lines, and weep at their beauty, then the tears turn bitter as they remember the rest of the files and the inevitable collapse of all that is good and true in the world.
 > <cite>From [Programming Sucks](https://www.stilldrinking.org/programming-sucks)</cite>
 
@@ -61,3 +55,9 @@ As I had mentioned Spring Fu is still very new and there were some bugs I encoun
 * There was a bug around having a separate class for handling routing and it seems its [due to a recent refactor](https://kotlinlang.slack.com/archives/C0B8ZTWE4/p1532095680000287), but I [got a response](https://kotlinlang.slack.com/archives/C0B8ZTWE4/p1532104961000327) and a [fix](https://github.com/spring-projects/spring-fu/commit/f7309ac0c11659fc3acd16081ba841a78ae398a6) was made.
 
 Overall I enjoyed the experience and am excited to try out another project once 0.0.1 lands!
+
+<style type="text/css">
+  .gist-meta {
+    display: none;
+  }
+</style>
