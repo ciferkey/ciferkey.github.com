@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-title: "KPOI: A Kotlin DSL for working with Apache POI"
+title: "KPOI A Kotlin DSL for working with Apache POI"
 description: "Leveraging Kotlin language features to build a DSL for writing spreadsheets with Apache POI."
 categories:
   - Projects
