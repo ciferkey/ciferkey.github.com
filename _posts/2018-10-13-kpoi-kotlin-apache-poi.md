@@ -7,11 +7,13 @@ categories:
   - Projects
 ---
 
-Sometimes in my line of work I have the *pleasure* of trying to programmatically generate spreadsheets or get to work on someone else's code which generates spreadsheets. In Java land the go to library for doing this is [Apache POI](https://poi.apache.org/). The API for generating spreadsheets is very imperative and side effect based. I could not help be curious about what it might look like if the API was re-imagined with a [Domain Specific Language](https://martinfowler.com/books/dsl.html) written in [Kotlin](https://kotlinlang.org/). So I decided like most normal humans would to spend a couple weekends writing code that helps generate spreadsheets. 
+Sometimes in my line of work I have the *pleasure* of trying to programmatically generate spreadsheets or get to work on someone else's code which generates spreadsheets. In Java land the go to library for doing this is [Apache POI](https://poi.apache.org/). The API for generating spreadsheets is very imperative and side effect based. I could not help be curious about what it might look like if the API was re-imagined with a [Domain Specific Language](https://martinfowler.com/books/dsl.html) written in [Kotlin](https://kotlinlang.org/). So like most normal humans I decided would to spend a couple weekends writing code that helps generate spreadsheets. 
 
 ### What is a DSL?
 
-For those that not familiar with the concept, a Domain Specific Language is a "computer language specialized to a particular application domain". For example SQL (when you exclude the many extensions that have been made to it over the years) is a DSL specifically for querying databases. Contrast this to general purpose programming languages like Java, Python, Kotlin, and Haskell which are designed to cover a wide variety of problems. Additionally some languages provide the ability to extend the syntax of the language to create DSLs *within* the language itself. This is fairly common in the ML (thats "Meta Language" not "Machine Learning") family of languages (Standard ML, OCaml, F Sharp) and languages that take inspiration from ML to varying degrees (Haskell, Scala, Rust) as well as modern languages not directly related to ML (Kotlin, Swift, Groovy). An example of a DSL you might have within a language is a [declarative way of generating HTML](https://kotlinlang.org/docs/reference/type-safe-builders.html).
+For those that not familiar with the concept, a Domain Specific Language is a "computer language specialized to a particular application domain". For example SQL (when you exclude the many extensions that have been made to it over the years) is a DSL specifically for querying databases. Contrast this to general purpose programming languages like Java, Python, Kotlin, and Haskell which are designed to cover a wide variety of problems. 
+
+Some languages provide the ability to extend the syntax of the language to create DSLs *within* the language itself. This is fairly common in the ML (thats "Meta Language" not "Machine Learning") family of languages (Standard ML, OCaml, F Sharp) and languages that take inspiration from ML to varying degrees (Haskell, Scala, Rust) as well as modern languages not directly related to ML (Kotlin, Swift, Groovy). An example of a DSL you might have within a language is a [declarative way of generating HTML](https://kotlinlang.org/docs/reference/type-safe-builders.html).
 
 This post is designed to:
 1. Highlight the language features in Kotlin which make wrapping/calling existing Java code a pleasant experience.
@@ -34,18 +36,18 @@ And change it to the Kotlin DSL which looks like:
 
 The design goals for the DSL were born from real world usage of POI:
 
-* Focus on the generation of workbooks rather than reading in workbooks
+* Focus the DSL on generating workbooks rather than parsing existing workbooks
 * POI provides multiple spreadsheet [implementations](https://poi.apache.org/components/spreadsheet/) with different version compatibility and performance characteristics. I wanted to build a single DSL for all for all the implementations that allows the underlying sheet type to be changed as needed.
-* It should provide defaults for common operations but allowing all default to be easily overridden. For example you will not need to supply a row number when writing continuous rows but you can set a specific row number if you wish.
+* It should provide defaults for common operations but allowing all defaults to be easily overridden. For example you will not need to supply a row number when writing contiguous rows but you can set a specific row number if you wish.
 
 In order to build off Apache POI we need to understand the existing API. It is built of a hierarchy of concepts:
 
 * You start off by creating a *Workbook*
 * You can create *Sheets* from a Workbook (these are the tabs you would see at the bottom in Excel). After creating you can set Sheet level configuration.
-* You can create *Rows* from a Sheet After creating you can set Row level configuration.
+* You can create *Rows* from a Sheet. After creating you can set Row level configuration.
 * You can create *Cells* from a Row. After creating you set the value of a Cell and can set various styling information
 
-You can see the POI API is very *imperative*. You create each part from the previous part and then after creation you modify it is as needed. I want the DSL to instead allow you to define the workbook *declaratively* by creating a nested structure that mirrors the relation between the classes.
+You can see the POI API is very *imperative*. You create each component from a previous component and then after creation you modify it is as needed. I want the DSL to instead allow you to define the workbook *declaratively* by creating a nested structure that mirrors the relation between the classes.
 
 ### Implementing the DSL:
 So how do we go about implementing a DSL to wrap a existing Java library? Well Kotlin provides some nice language features that we can build off of.
