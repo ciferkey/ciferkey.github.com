@@ -7,7 +7,7 @@ categories:
   - Projects
 ---
 
-Sometimes in my line of work I have the *pleasure* of trying to programmatically generate spreadsheets or get to work on someone else's code which generates spreadsheets. In Java land the go to library for doing this is [Apache POI](https://poi.apache.org/). The API for generating spreadsheets is very imperative and side effect based. I could not help be curious about what it might look like if the API was re-imagined with a [Domain Specific Language](https://martinfowler.com/books/dsl.html) written in [Kotlin](https://kotlinlang.org/). So like most normal humans I decided would to spend a couple weekends writing code that helps generate spreadsheets. 
+Sometimes in my line of work I have the pleasure of trying to programmatically generate spreadsheets or get to work on someone else's code which generates spreadsheets. In Java land the go to library for doing this is [Apache POI](https://poi.apache.org/). The API for generating spreadsheets is very imperative and side effect based. I could not help be curious about what it might look like if the API was re-imagined with a [Domain Specific Language](https://martinfowler.com/books/dsl.html) written in [Kotlin](https://kotlinlang.org/). So like most normal humans I decided would to spend a couple weekends writing code that helps generate spreadsheets. 
 
 ### What is a DSL?
 
@@ -38,9 +38,9 @@ The design goals for the DSL were born from real world usage of POI:
 
 * Focus the DSL on generating workbooks rather than parsing existing workbooks
 * POI provides multiple spreadsheet [implementations](https://poi.apache.org/components/spreadsheet/) with different version compatibility and performance characteristics. I wanted to build a single DSL for all for all the implementations that allows the underlying sheet type to be changed as needed.
-* It should provide defaults for common operations but allowing all defaults to be easily overridden. For example you will not need to supply a row number when writing contiguous rows but you can set a specific row number if you wish.
+* It should provide defaults for common operations but allow the defaults to be easily overridden. For example you will not need to supply a row number when writing contiguous rows but you can set a specific row number if you wish.
 
-In order to build off Apache POI we need to understand the existing API. It is built of a hierarchy of concepts:
+In order to build off Apache POI we need to understand the existing API. It is built off a hierarchy of concepts:
 
 * You start off by creating a *Workbook*
 * You can create *Sheets* from a Workbook (these are the tabs you would see at the bottom in Excel). After creating you can set Sheet level configuration.
@@ -56,10 +56,10 @@ So how do we go about implementing a DSL to wrap an existing Java library? Well 
 
 One set of fundamental language features are [lambdas and higher order functions](http://kotlinlang.org/docs/reference/lambdas.html#higher-order-functions). These concepts will be familiar for those who have worked in Java 8. The basic idea is that functions are "first class" can be passed as parameters to *other* functions.
 
-In our case lets say we want a method called "workbook" which will create a new Workbook for us. The method is passed lambda  which modifies the workbook and then returns the new workbook. In Java this would look like:
+In our case lets say we want a method called "workbook" which will create a new Workbook for us. The method is passed a lambda  which modifies the workbook and then returns the new workbook. In Java this would look like:
 <script src="https://gist.github.com/ciferkey/d6cfb19f7c86d57021716fd50f1b9ee6.js"></script>
 
-In Kotlin this could be done as:
+Where as in Kotlin this would look like:
 <script src="https://gist.github.com/ciferkey/3ba7ce78ac9a77d7fcbb2e505c1cbd3a.js"></script>
 
 So what on earth just happen in that last example method call? Basically if you have a method that only takes a single parameter which is a lambda then you can drop a lot of the syntax you would normally have to type out in Java. This is key to making a DSL! If you look closely at the final example you can see that it looks just like we are using a *expression* in the language such as the "if" expression. __This is why an internal DSL is often described as extending the language__. We are able to create new syntax which feels like its a part of the language itself!
@@ -96,7 +96,7 @@ So after all that work we now have a nice way to create and modify Workbooks. Wh
 Lets think back to the example from the beginning we would like to create:
 <script src="https://gist.github.com/ciferkey/a0b1421b853b6c9ccaa4da308fe3fe58.js"></script>
 
-You will notice that inside the lambda block passed to the "workbook" expression we want to have a similar looking "sheet" expression (starting on line 2). If we think back to the explanation of how the "workbook" expression works we realize that the "sheet" *expression* is actually a call to a method named "statement" on the implicit Workbook object. However Workbook is a class from Apache POI that we do not have control over and it does not have any method like that! So what we need is a clean mechanism to enhance the existing Java classes from the API.
+You will notice that inside the lambda block passed to the "workbook" expression we want to have a similar looking "sheet" expression (starting on line 2). If we think back to the explanation of how the "workbook" expression works we realize that the "sheet" *expression* is actually a call to a method named "sheet" on the implicit Workbook object. However Workbook is a class from Apache POI that we do not have control over and it does not have any method like that! So what we need is a clean mechanism to enhance the existing Java classes from the API.
 
 If we were working in Java some options to achieve this are:
 
@@ -131,7 +131,7 @@ This leverages extensions methods as well as all the techniques from the previou
 
 > block: Sheet.() -> Unit = {}
 
-* you can optionally pass a parameter "block". If you don't supply it then a lambda that does nothing is used. The block also uses a receiver type of Sheet.
+* You can optionally pass a parameter "block". If you don't supply it then a lambda that does nothing is used. The block also uses a receiver type of Sheet.
 
 > return if (name != null) {
         createSheet(name)
