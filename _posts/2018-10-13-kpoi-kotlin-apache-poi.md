@@ -50,13 +50,13 @@ In order to build off Apache POI we need to understand the existing API. It is b
 You can see the POI API is very *imperative*. You create each component from a previous component and then after creation you modify it is as needed. I want the DSL to instead allow you to define the workbook *declaratively* by creating a nested structure that mirrors the relation between the classes.
 
 ### Implementing the DSL:
-So how do we go about implementing a DSL to wrap a existing Java library? Well Kotlin provides some nice language features that we can build off of.
+So how do we go about implementing a DSL to wrap an existing Java library? Well Kotlin provides some nice language features that we can build off of.
 
-__Higher Order Functions, Lambdas as Blocks, Lambda as last parameter__
+#### Higher Order Functions, Lambdas as Blocks, Lambda as last parameter
 
 One set of fundamental language features are [lambdas and higher order functions](http://kotlinlang.org/docs/reference/lambdas.html#higher-order-functions). These concepts will be familiar for those who have worked in Java 8. The basic idea is that functions are "first class" can be passed as parameters to *other* functions.
 
-In our case lets say we want a method called "workbook" which will create a new Workbook for us, apply a supplied method which modifies the notebook and then returns the new notebook. In Java this would look like:
+In our case lets say we want a method called "workbook" which will create a new Workbook for us. The method is passed lambda  which modifies the workbook and then returns the new workbook. In Java this would look like:
 <script src="https://gist.github.com/ciferkey/d6cfb19f7c86d57021716fd50f1b9ee6.js"></script>
 
 In Kotlin this could be done as:
@@ -64,14 +64,14 @@ In Kotlin this could be done as:
 
 So what on earth just happen in that last example method call? Basically if you have a method that only takes a single parameter which is a lambda then you can drop a lot of the syntax you would normally have to type out in Java. This is key to making a DSL! If you look closely at the final example you can see that it looks just like we are using a *expression* in the language such as the "if" expression. __This is why an internal DSL is often described as extending the language__. We are able to create new syntax which feels like its a part of the language itself!
 
-__Receiver Types__
+#### Receiver Types
 
-A second piece of syntax we can clean up in the DSL is the explicit reference to the Workbook. In the previous example we skipped naming the parameter we passed into the lambda and instead opted to use the default parameter name of "it". We can further simplify things by making use of [receiver types](https://kotlinlang.org/docs/reference/lambdas.html#function-types). A receiver type lets you make the *explicit* workbook parameter *implicit* so you can the methods on it directly without having to reference the workbook parameter by name. This means we can update the previous example as follows:
+A second piece of syntax we can clean up in the DSL is the explicit reference to the Workbook. In the previous example we skipped naming the parameter we passed into the lambda and instead opted to use the default parameter name of "it". We can further simplify things by making use of [receiver types](https://kotlinlang.org/docs/reference/lambdas.html#function-types). A receiver type lets you make the *explicit* workbook *implicit* so you can call the methods on it directly without having to reference the workbook by name. This means we can update the previous example as follows:
 <script src="https://gist.github.com/ciferkey/add920dc3bfc1297f20c9ee9a11182a5.js"></script>
 
 Now we can call setHidden and setSelectedTab directly without referring to "it".
 
-__Property Access Syntax__
+#### Property Access Syntax
 
 Why do we use getters and setters in Java? One reason is that accessors enable encapsulation: if the underlying implementation of a class changes and we are directly referring to fields on a class then we must update all the places were we access fields that have changed. If we use accessor methods then we can change the underling implementation, update the methods and the external code can stay the same. Additionally getters and setters allow us to do things like check if the underlying value is initialized or do some form of type conversion.
 
@@ -80,23 +80,25 @@ However these examples typically are the *exception* rather than the *norm*. Unl
 In Kotlin you directly refer to a field on a class. Then if you need to you can define a getter or setter. However instead of explicitly referring to the accessor method, the method will instead be implicitly used when accessing the field:
 <script src="https://gist.github.com/ciferkey/9ee0e704c39fd587adc775d2423a6349.js"></script>
 
-Additionally since Kotlin aims for a pleasant Java interop experience you can use Kotlin's property access syntax on Java classes which have a getter. Kotlin will handle the conversion for you. So if you have a Plain Old Java Object with getters and setters you can use it in Kotlin as if its a Kotlin class in most cases. This means we can update our previous example to:
+Additionally since Kotlin aims for a pleasant Java interop experience you can use Kotlin's property access syntax on Java classes that have a getter. Kotlin will handle the conversion for you. So if you have a Plain Old Java Object with getters and setters you can use it in Kotlin as if its a Kotlin class in most cases. This means we can update our previous example to:
 <script src="https://gist.github.com/ciferkey/94c1018cbd09006f9efc152158e59a9b.js"></script>
 
-__Default/Optional Parameters__
+#### Default/Optional Parameters
 
-In Kotlin you can set default values for method parameters. This makes the parameters optional allowing you to omit them when you want. In the previous examples we have been hard-coding the type of Workbook used as HSSFWorkbook (this an Excel '97 compatible workbook, .xls). What if a user wants to use a XSSFWorkbook (Excel 2007, .xlsx) instead? It would be nice if a user could provide the workbook to use if they wanted to. With default parameter value we can enable this behavior:
+In Kotlin you can set default values for method parameters. This makes the parameters optional. In the previous examples we have been hard-coding the type of Workbook used as HSSFWorkbook (this an Excel '97 compatible workbook, .xls). What if a user wants to use a XSSFWorkbook (Excel 2007, .xlsx) instead? It would be nice if a user could provide the workbook to use if they wanted to. With a default parameter value we can enable this behavior:
 <script src="https://gist.github.com/ciferkey/e24267a779c53de742a4dda51da45341.js"></script>
 
-__Extension Methods__
+#### Extension Methods
 
-So after all that work we now have a nice way to create and modify Workbooks. What about Sheets, Rows and Cells though? For Workbooks we were able to create a default Workbook or use a provided Workbook. Will that work for the other parts? With Apache POI you need a parent object to create a child object:
+So after all that work we now have a nice way to create and modify Workbooks. What about Sheets, Rows and Cells though? For Workbooks we were able to create a default Workbook or use a provided Workbook. Will that work for the other parts? Remember that with Apache POI you need a parent object to create a child object:
 <script src="https://gist.github.com/ciferkey/1f4bc092baf73b87845b5c30b7398d58.js"></script>
 
 Lets think back to the example from the beginning we would like to create:
 <script src="https://gist.github.com/ciferkey/a0b1421b853b6c9ccaa4da308fe3fe58.js"></script>
 
-You will notice that inside the lambda block passed to the "workbook" expression we want to have a similar looking "sheet" expression. If you think back to the explanation given earlier that  *expression* is actually a call to a method named "statement" on the implicit Workbook object. However Workbook is a class from Apache POI that we do not have control over and it does not have any method like that! So what we need is a clean mechanism to enhance the existing Java classes in the API. If we were working in Java some options to achieve this are:
+You will notice that inside the lambda block passed to the "workbook" expression we want to have a similar looking "sheet" expression (starting on line 2). If we think back to the explanation of how the "workbook" expression works we realize that the "sheet" *expression* is actually a call to a method named "statement" on the implicit Workbook object. However Workbook is a class from Apache POI that we do not have control over and it does not have any method like that! So what we need is a clean mechanism to enhance the existing Java classes from the API.
+
+If we were working in Java some options to achieve this are:
 
 * Use inheritance to extend the classes in the library to add new functionality. In this case it would generally be frowned upon. Item 18 in Effective Java (Favor composition over inheritance) makes the important distinction between using inheritance within your own projects vs across project boundaries:
 > It is safe to use inheritance within a package, where the subclass and the superclass implementations are under the control of the same programmers. It is also safe to use inheritance when extending classes specifically designed and documented for extension (Item 19). Inheriting from ordinary concrete classes across package boundaries, however, is dangerous ... Unlike method invocation, inheritance violates encapsulation [Snyder86]. In other words, a subclass depends on the implementation details of its superclass for its proper function. The superclass’s implementation may change from release to release, and if it does, the subclass may break, even though its code has not been touched. As a consequence, a subclass must evolve in tandem with its superclass, unless the superclass’s authors have designed and documented it specifically for the purpose of being extended.
@@ -143,7 +145,7 @@ This leverages extensions methods as well as all the techniques from the previou
 
 * In Java we have Object that all objects inherit from. It gives us sad methods likes the default equals and default toString. In Kotlin we have Any which classes inherit from and gives us a bunch of [useful methods](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html) like apply. Apply will call a supplied method on an object and then return the object. This is great for modifying a value and then passing it on. By using apply hear we avoid needing to make the block method return its input so you don't have to worry about returning anything when you write the block to pass into this method!
 
-Putting that all together, the sheet method essentially adds a new method to Workbook which takes a block that modifies the Workbook and then returns the Workbook.
+Putting that all together, the sheet method essentially adds a new method to Workbook which creates a new Sheet from the workbook, applies the given lambda to it and then returns the Sheet.
 
 Whew... wait we still need row and cell. They leverage the same design more or less:
 <script src="https://gist.github.com/ciferkey/393fec4083f9c68a8233257ad34c7a18.js"></script>
@@ -163,7 +165,7 @@ An unfortunate aspect of Apache POI is that none of the classes implement Equals
 
 
 ### Potential future work
-Note that this DSL is specifically designed to cover declaratively creating workbooks. It has nothing to do with reading in notebooks and manipulating which is another use case for Apache POI. That is because I have primarily used it to generate workbooks. There still is interesting work that could be done around the read side as well to make it more pleasant.
+Note that this DSL is specifically designed to cover declaratively creating workbooks. It has nothing to do with reading in notebooks and manipulating which is another use case for Apache POI. There still is interesting work that could be done around the read side to make it more pleasant.
 
 <style type="text/css">
   .gist-meta {
