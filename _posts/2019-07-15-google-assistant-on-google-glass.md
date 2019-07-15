@@ -15,7 +15,9 @@ The goal of the project was to add Google assistant connectivity to the Google G
 
 ### Previous Implementation
 Back when I had implemented the project in 2018 I was able to issue Assistant requests over the API:
+
 ![First successful assistant SDK request from glass](/images/first-request.png)
+
 However the project was lacking in a couple areas and Glass runs an older version of Android (4.4 KitKat) which complicates matters. The primary areas I wanted to address this time are:
 - There was a [bug in GRPC](https://github.com/grpc/grpc-java/pull/3971) that prevented it from using the correct Security Provider. I had to depend on a custom build of GRPC while waiting for the changes to be released.
 - There was no pure voice driven invocation like on normal android devices. You had to first say "Ok Glass" to bring up the voice triggers menu and then say "ask Assistant....".
@@ -29,9 +31,11 @@ This is still a work in progress and enough work that I'd like to provide more d
 
 ### Porting Process
 The Glass SDK is still available for use in Android Studio. In the Android SDK section of the settings insure you have installed the 4.4 (KitKat) SDK Platform. It doesn't mention Glass but if you check the "Show Package Details" checkbox you will see it includes "Glass Development Kit Preview".
+
 ![Android Studio SDK settings for glass](/images/sdk-settings.png)
 
 Next I created a new project starting with the Glass Immersion Activity as the base.
+
 ![Android Studio SDK settings for glass](/images/glass-immersion-activity.png)
 
 To issue unregistered Glass voice commands during development you need to [add a permission](https://developers.google.com/glass/develop/gdk/voice#unlisted_commands) to the manifest.
