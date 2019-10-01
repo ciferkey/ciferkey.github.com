@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-title: "A Simple DevOps Demo: Part 1 Ansible"
+title: "A Simple Demo: Part 1 Ansible"
 description: "Part 1 in a simple series on DevOps tooling."
 categories:
   - Projects
@@ -13,9 +13,9 @@ The end result of this series we will have:
   * [Ansible](https://www.ansible.com/) for machine provisioning and configuration management
   * [Docker](https://www.docker.com/)  for containers
   * [Docker Compose](https://docs.docker.com/compose/) for managing containers
-  * Containers
+  * Containers:
     * [nginx](https://hub.docker.com/_/nginx) as a reverse proxy
-    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (Thats [Private Internet Access](https://www.privateinternetaccess.com/)) for VPN
+    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN
     * [Deluge](https://hub.docker.com/r/linuxserver/deluge) as a torrent client
     * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) a "PVR for Usenet and BitTorrent users"
     * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) a Sonarr fork for movies
@@ -25,7 +25,7 @@ The end result of this series we will have:
 I'm just using this as an example for demonstration purposes of course.
 
 Part 1 (this page) covers using Ansible to configure Docker and Docker Compose on Debian.
-Part 2 covers setting up our containers with Docker Compose
+Part 2 covers setting up our containers with Docker Compose.
 Part 3 pulls Ansible back in at the end to help with the configuration for the containers.
 
 For testing I used a VPS on [Linode](https://www.linode.com/) running Debian 10.
@@ -33,8 +33,10 @@ For testing I used a VPS on [Linode](https://www.linode.com/) running Debian 10.
 # Ansible
 The [full Ansible playbook](https://github.com/ciferkey/media/blob/master/ansible.yml) is available but I'm going to breakdown what went in to it. The file is designed so that you can drop it on to a box as a fresh root user and it will handle everything for you.
 
-Additionally I'm not coordinating multiple machines so the script will be run locally on the box you want to configure using the default localhost configuration:
+I'm not coordinating multiple machines so the script will be run locally on the box you want to configure using the default localhost configuration:
 {% highlight yml %}
+---
+
   - name: Docker
     connection: local
     gather_facts: yes
@@ -48,11 +50,11 @@ Additionally I'm not coordinating multiple machines so the script will be run lo
         salt_size: 7
 {% endhighlight %}
 
-I've configured the book to [prompt](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for a password to use with for the docker user since there is no secretes management tool.
+I've configured the playbook to [prompt](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for a password to use with for the docker user since there is no secretes management tool. That could be a nice to have but would be overkill for such a *simple demo application*.
 
 
 ## Docker User
-First we need a non root user to run the containers with. Instead of doing:
+First we need a non root user to run the containers with. Instead of running these commands:
 {% highlight shell %}
 adduser docker
 usermod -aG sudo docker
@@ -91,7 +93,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 {% endhighlight %}
 
-This involves installing some dependencies, adding a key and a new repository to the package manager and installing docker. Ansible has built in support for many of these operations which leads to some nice and clean tasks.
+This involves installing some dependencies, adding a key and a new repository to the package manager and installing docker. Ansible has built in support for many of these operations which simplifies tasks.
 
 The [apt module](https://docs.ansible.com/ansible/latest/modules/apt_module.html) allows us to install dependencies. By using "update_cache: yes" we can skip having a separate update step:
 {% highlight yml %}
@@ -117,7 +119,7 @@ The [apt_repository module](https://docs.ansible.com/ansible/latest/modules/apt_
 {% highlight yml %}
 - name: Add Docker Respository
 apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian &#123;&#123; ansible_distribution_release &#125;&#125; stable"
 {% endhighlight %}
 
 
@@ -137,17 +139,16 @@ The Docker Compose [documentation recommends](https://docs.docker.com/compose/in
 {% highlight shell %}
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-        mode: 755
 {% endhighlight %}
 
 This pulls a binary from Github, saves the binary under /usr/local/bin and sets the appropriate permissions for it.
 
-The [get_url module](https://docs.ansible.com/ansible/latest/modules/get_url_module.html) lets us fetch the binary off of GitHub. We use "ansible_system" and "ansible_architecture" from the gathered facts to generate the URL as opposed to [uname](http://man7.org/linux/man-pages/man2/uname.2.html). As a part of getting the binary we can set the mode to 755 for the owner docker to avoid doing this in a second step (and as per the docs "You must either add a leading zero so that Ansible's YAML parser knows it is an octal number (like 0644 or 01777) or quote it (like '644' or '1777') so Ansible receives a string and can do its own conversion from string into number.")
+The [get_url module](https://docs.ansible.com/ansible/latest/modules/get_url_module.html) lets us fetch the binary off of GitHub. We use "ansible_system" and "ansible_architecture" from the gathered facts to generate the URL as opposed to [uname](http://man7.org/linux/man-pages/man2/uname.2.html). As a part of getting the binary we can set the mode to 755 for the docker user to avoid doing this in a second step. Also as per the docs "You must either add a leading zero so that Ansible's YAML parser knows it is an octal number (like 0644 or 01777) or quote it (like '644' or '1777') so Ansible receives a string and can do its own conversion from string into number."
 
 {% highlight yml %}
   - name: Install Docker Compose
     get_url:
-        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-{{ansible_system}}-{{ansible_architecture}}
+        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-&#123;&#123;ansible_system&#125;&#125;-&#123;&#123;ansible_architecture&#125;&#125;
         dest: /usr/local/bin/docker-compose
         mode: '755'
         owner: docker
