@@ -125,8 +125,7 @@ apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/debian &#123;&#123; ansible_distribution_release &#125;&#125; stable"
 {% endhighlight %}
 
-
-Finally we can install Docker from the new repository:
+Then we can install Docker from the new repository:
 {% highlight yml %}
 - name: Install Docker
     apt:
@@ -135,6 +134,21 @@ Finally we can install Docker from the new repository:
             - docker-ce-cli
             - containerd.io
         update_cache: yes
+{% endhighlight %}
+
+Finally instead having to do this to enable the docker service to run on startup:
+{% highlight shell %}
+sudo systemctl enable docker
+sudo systemctl start docker
+{% endhighlight %}
+
+The [systemd module](https://docs.ansible.com/ansible/latest/modules/systemd_module.html) can be used instead:
+{% highlight yml %}
+- name: Set Docker to Run on Startup
+  systemd:
+    state: started
+    name: docker
+    enabled: true
 {% endhighlight %}
 
 ## Install Docker Compose
