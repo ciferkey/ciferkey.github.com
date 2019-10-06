@@ -69,9 +69,12 @@ We can use the [user module](https://docs.ansible.com/ansible/latest/modules/use
         update_password: on_create
         groups:
             - sudo
+            - render
+            - video
         shell: /bin/bash
         state: present
 {% endhighlight %}
+The docker user will also be added to the render and video groups to enable access to hardware transcoding.
 
 ## Install Docker
 
