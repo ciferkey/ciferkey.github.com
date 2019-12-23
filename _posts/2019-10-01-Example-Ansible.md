@@ -1,12 +1,12 @@
 ---
 layout: single
 classes: wide
-title: "A Simple Demo: Part 1 Ansible"
-description: "Part 1 in a simple series on DevOps tooling."
+title: "Ansible"
+description: ""
 categories:
   - Projects
 ---
-This post is part 1 in a series where I will demonstrate some DevOps tools with a *simple application of no value*.
+Today I will demonstrate some DevOps tools with a *simple application of no value*.
 
 The end result of this series we will have:
   * [Debian](https://www.debian.org/) 10 as our OS
@@ -15,7 +15,7 @@ The end result of this series we will have:
   * [Docker Compose](https://docs.docker.com/compose/) for managing containers
   * Containers:
     * [nginx](https://hub.docker.com/_/nginx) as a reverse proxy
-    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN
+    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN. _Note this has since been replaced with Wireguard on Mullvad
     * [Deluge](https://hub.docker.com/r/linuxserver/deluge) as a torrent client
     * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) a "PVR for Usenet and BitTorrent users"
     * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) a Sonarr fork for movies
@@ -24,9 +24,10 @@ The end result of this series we will have:
 
 I'm just using this as an example for demonstration purposes of course.
 
-Part 1 (this page) covers using Ansible to configure Docker and Docker Compose on Debian.
-Part 2 covers setting up our containers with Docker Compose.
-Part 3 pulls Ansible back in at the end to help with the configuration for the containers.
+This page covers using Ansible to configure Docker and Docker Compose on Debian.
+In later posts I plan to cover:
+ - setting up our containers with Docker Compose.
+ - using Ansible to help with the configuration for the containers.
 
 For testing I used a VPS on [Linode](https://www.linode.com/) running Debian 10.
 
