@@ -7,7 +7,7 @@ categories:
   - Projects
 ---
 
-In a [previous post](/projects/2019/10/01/Example-Ansible.md.html) I discussed setting up docker containers that used OpenVPN. Since they I have updated my setup to use [Wireguard](https://www.wireguard.com/) instead and I'm documenting the resources I found useful in case anyone wants to do the same thing. Two main reasons drove me to move from OpenVPN to Wireguard:
+In a [previous post](/projects/2019/10/01/Example-Ansible.html) I discussed setting up docker containers that used OpenVPN. Since they I have updated my setup to use [Wireguard](https://www.wireguard.com/) instead and I'm documenting the resources I found useful in case anyone wants to do the same thing. Two main reasons drove me to move from OpenVPN to Wireguard:
 
 The first reason is that my old provider Private Internet Access was [bought out by Kape](https://torrentfreak.com/private-internet-access-to-be-acquired-by-kape/). There haven't been any changes to PIA yet but the new owner is a bit worrying considering their track record. So I have changed to [Mullvad](https://mullvad.net/en/) as my new provider and they have very good Wireguard support.
 
