@@ -25,7 +25,7 @@ github_username:  ciferkey
 # Build settings
 markdown: kramdown
 # theme: minima
-remote_theme: "mmistakes/minimal-mistakes@4.17.2"
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
   - jekyll-sitemap
