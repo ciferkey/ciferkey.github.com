@@ -9,6 +9,8 @@ categories:
 
 _Note: This port isn't really complete but its been sitting on the backburner for over a year now so I'm pushing it out as a draft._
 
+Update 2019-12-07: Google has [announced a final software update for the explorer edition](https://support.google.com/glass/answer/9649198?hl=en&ref_topic=3063354) that "removes the need and ability to use your Google account on Glass". I'll likely not come back to finish this experiment at this point.
+
 Google announced [Enterprise Edition 2](https://www.blog.google/products/hardware/glass-enterprise-edition-2/) of Google Glass. I'm very jealous I cannot buy one but that is probably for the best considering I bought a used Google Glass XE-C (the last Glass revision available to consumers) off of Ebay back in February of 2018 and never finished my project with it...
 
 The goal of the project was to add Google assistant connectivity to the Google Glass. At the time (end of 2017) Google had just [announced](https://developers.googleblog.com/2017/12/the-google-assistant-sdk-new-languages.html) updates to the Google Assistant SDK that allowed additional ways to call the assistant API. My plan was to adapt the examples given for running assistant on Android Things to instead run on the Glass. I decided to call the project Glassistant because it simultaneously breaks the branding guidelines both [Glass](https://developers.google.com/glass/distribute/branding-guidelines) and [Assistant](https://developers.google.com/actions/policies/branding-policies). 
