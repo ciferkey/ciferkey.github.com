@@ -6,7 +6,7 @@ description: "Part 1 in a simple series on DevOps tooling."
 categories:
   - Projects
 ---
-This post is part 1 in a series where I will demonstrate some DevOps tools with a *simple application of no value*.
+This post will demonstrate some DevOps tools with a *simple application of no value*.
 
 The end result of this series we will have:
   * [Debian](https://www.debian.org/) 10 as our OS
@@ -15,7 +15,7 @@ The end result of this series we will have:
   * [Docker Compose](https://docs.docker.com/compose/) for managing containers
   * Containers:
     * [nginx](https://hub.docker.com/_/nginx) as a reverse proxy
-    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN
+    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN. Update: I've now [replaced this with Mullvad and Wireguard]({% post_url _posts/2019-10-01-Example-Ansible %})
     * [Deluge](https://hub.docker.com/r/linuxserver/deluge) as a torrent client
     * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) a "PVR for Usenet and BitTorrent users"
     * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) a Sonarr fork for movies
@@ -23,10 +23,6 @@ The end result of this series we will have:
     * [Jellyfin](https://hub.docker.com/r/jellyfin/jellyfin/) as a media front end
 
 I'm just using this as an example for demonstration purposes of course.
-
-Part 1 (this page) covers using Ansible to configure Docker and Docker Compose on Debian.
-Part 2 covers setting up our containers with Docker Compose.
-Part 3 pulls Ansible back in at the end to help with the configuration for the containers.
 
 For testing I used a VPS on [Linode](https://www.linode.com/) running Debian 10.
 
