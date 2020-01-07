@@ -33,3 +33,110 @@ There's a blog post that describes two solutions for using Wireguard with docker
 
 # Raspberry Pi Specific Changes for Installation
 Finally I want to do this on a Rapsberry Pi 4 which requires [additional steps](https://github.com/adrianmihalko/raspberrypiwireguard) to install raspberrypi-kernel-headers and get Wireguard to run. 
+
+# Putting It All Together With Ansible
+
+## Handling the Mullvad config file
+The playbook assumes there is a file called "mullvad.conf" in the same directory as playbook which is the configuration file downloaded from the Mullvad configuration generation tool and the vars section uses the [ini plugin for lookups ](https://docs.ansible.com/ansible/latest/plugins/lookup/ini.html) to read the server Address and DNS information from config file:
+
+{% highlight yml %}
+{% raw %}
+---
+
+  - name: Wireguard
+    connection: ssh
+    become_user: root
+    become: yes
+    hosts: rpi
+    vars:
+      address: "{{ lookup('ini', 'Address section=Interface file=mullvad.conf').split(',')[0] }}"
+      dns: "{{ lookup('ini', 'DNS section=Interface file=mullvad.conf') }}"
+    tasks:
+      - name: Print Mullavd Address
+        debug:
+          msg: "Address is: {{ address }}"
+      - name: Print Mullvad DNS
+        debug:
+          msg: "DNS is: {{ dns }}"
+{% endraw %}
+{% endhighlight yml %}
+
+Note the we have to split the address on "," since the INI entry contains both the ipv4 and ipv6 address and we only want the first half
+
+## Installing Wireguard
+The installation process is basically a combination of the two posts on installing, but replacing command with ansible tasks to clean it up:
+
+{% highlight yml %}
+{% raw %}
+      - name: enable unstable
+        lineinfile:
+          path: /etc/apt/sources.list.d/unstable-wireguard.list
+          create: yes
+          line: deb http://deb.debian.org/debian/ unstable main
+      - name: enable wireguard repo
+        blockinfile:
+          path: /etc/apt/preferences.d/limit-unstable
+          create: yes
+          block: |
+            Package: *
+            Pin: release a=unstable
+            Pin-Priority: 150
+      - name: Add first key
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 8B48AD6246925553
+      - name: Add second key
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 7638D0442B90D010
+      - name: Add third key
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 04EE7237B7D453EC
+      - name: Install deps
+        apt:
+          pkg:
+            - raspberrypi-kernel-headers
+            - dirmngr
+            - wireguard-dkms
+            - wireguard-tools
+            - resolvconf
+          update_cache: yes
+{% endraw %}
+{% endhighlight yml %}
+
+## Configuring the Wireguard Interface
+Finally we want to set up the wireguard interface that docker will use. We do this by first copying the Mullvad config over to the machine. Then as noted by the Wireguard on Docker article we remove the "Address" and "DNS" options from the file since we have to manually configure the interface instead of using the wg-quick command. With that done all thats left is to setup up the interface and configure it:
+
+{% highlight yml %}
+{% raw %}
+      - name: Copy config to server
+        synchronize:
+          src: mullvad.conf
+          dest: /etc/wireguard/wg1.conf
+      - name: remove Address entry
+        ini_file:
+          path: /etc/wireguard/wg1.conf
+          section: Interface
+          option: Address
+          state: absent
+      - name: remove DNS entry
+        ini_file:
+          path: /etc/wireguard/wg1.conf
+          section: Interface
+          option: DNS
+          state: absent
+      - name: add wireguard interface
+        command: "ip link add dev wg1 type wireguard"
+      - name: set wireguard config
+        command: "wg setconf wg1 /etc/wireguard/wg1.conf"
+      - name: set wireguard address
+        command: "ip address add {{ address }} dev wg1"
+      - name: put interface up
+        command: "ip link set up dev wg1"
+      - name: set nameserver
+        command: "printf 'nameserver %s\n' '{{ dns }}' | resolvconf -a tun.wg1 -m 0 -x"
+      - name: handle reverse path filtering
+        command: "sysctl -w net.ipv4.conf.all.rp_filter=2"
+{% endraw %}
+{% endhighlight yml %}
