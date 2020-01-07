@@ -58,6 +58,7 @@ usermod -aG sudo docker
 
 We can use the [user module](https://docs.ansible.com/ansible/latest/modules/user_module.html):
 {% highlight yml %}
+{% raw %}
   - name: Create docker user
     user:
         name: docker
@@ -69,6 +70,7 @@ We can use the [user module](https://docs.ansible.com/ansible/latest/modules/use
             - video
         shell: /bin/bash
         state: present
+{% endraw %}
 {% endhighlight %}
 The docker user will also be added to the render and video groups to enable access to hardware transcoding.
 
@@ -116,9 +118,11 @@ The [apt_key module](https://manpages.ubuntu.com/manpages/bionic/man8/apt-key.8.
 
 The [apt_repository module](https://docs.ansible.com/ansible/latest/modules/apt_repository_module.html) lets us add a new repository. Since I specified ["gather_facts: yes"](https://docs.ansible.com/ansible/latest/modules/gather_facts_module.html) at the start of the playbook Ansible collected information about the machine before it started. This includes a "ansible_distribution_release" value that lets us use the correct repository for our Debian release:
 {% highlight yml %}
+{% raw %}
 - name: Add Docker Respository
 apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/debian &#123;&#123; ansible_distribution_release &#125;&#125; stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+{% end raw %}
 {% endhighlight %}
 
 Then we can install Docker from the new repository:
@@ -159,12 +163,14 @@ This pulls a binary from Github, saves the binary under /usr/local/bin and sets 
 The [get_url module](https://docs.ansible.com/ansible/latest/modules/get_url_module.html) lets us fetch the binary off of GitHub. We use "ansible_system" and "ansible_architecture" from the gathered facts to generate the URL as opposed to [uname](http://man7.org/linux/man-pages/man2/uname.2.html). As a part of getting the binary we can set the mode to 755 for the docker user to avoid doing this in a second step. Also as per the docs "You must either add a leading zero so that Ansible's YAML parser knows it is an octal number (like 0644 or 01777) or quote it (like '644' or '1777') so Ansible receives a string and can do its own conversion from string into number."
 
 {% highlight yml %}
+{% raw %}
   - name: Install Docker Compose
     get_url:
-        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-&#123;&#123;ansible_system&#125;&#125;-&#123;&#123;ansible_architecture&#125;&#125;
+        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
         dest: /usr/local/bin/docker-compose
         mode: '755'
         owner: docker
+{% endraw %}
 {% endhighlight %}
 
 # Running the Playbook
