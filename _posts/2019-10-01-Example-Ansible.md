@@ -104,7 +104,7 @@ The [apt_repository module](https://docs.ansible.com/ansible/latest/modules/apt_
 - name: Add Docker Respository
 apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
-{% end raw %}
+{% endraw %}
 {% endhighlight %}
 
 Then we can install Docker from the new repository:
