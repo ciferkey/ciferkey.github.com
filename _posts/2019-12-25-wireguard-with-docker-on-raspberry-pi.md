@@ -53,6 +53,7 @@ The playbook assumes there is a file called "mullvad.conf" in the same directory
     vars:
       address: "{{ lookup('ini', 'Address section=Interface file=mullvad.conf').split(',')[0] }}"
       dns: "{{ lookup('ini', 'DNS section=Interface file=mullvad.conf') }}"
+      subnet_ip: "10.193.0.0/16"
     tasks:
       - name: Print Mullavd Address
         debug:
@@ -108,7 +109,7 @@ The installation process is basically a combination of the two posts on installi
 {% endhighlight yml %}
 
 ## Configuring the Wireguard Interface
-Finally we want to set up the wireguard interface that docker will use. We do this by first copying the Mullvad config over to the machine. Then as noted by the Wireguard on Docker article we remove the "Address" and "DNS" options from the file since we have to manually configure the interface instead of using the wg-quick command. With that done all thats left is to setup up the interface and configure it:
+Finally we want to set up the wireguard interface that docker will use. We do this by first copying the Mullvad config over to the machine. Then as noted by the Wireguard on Docker article we remove the "Address" and "DNS" options from the config file since we have to manually configure the interface instead of using the wg-quick command. Then we are free to setup up the interface and configure it:
 
 {% highlight yml %}
 {% raw %}
@@ -140,5 +141,22 @@ Finally we want to set up the wireguard interface that docker will use. We do th
         command: "printf 'nameserver %s\n' '{{ dns }}' | resolvconf -a tun.wg1 -m 0 -x"
       - name: handle reverse path filtering
         command: "sysctl -w net.ipv4.conf.all.rp_filter=2"
+{% endraw %}
+{% endhighlight yml %}
+
+## Creating the Docker Network
+Finally all that is left is to create the docker network and setup the firewall to route it through wireguard:
+
+{% highlight yml %}
+{% raw %}
+- name: create docker network
+        docker_network:
+          name: docker-vpn0
+          ipam_config:
+            - subnet: "{{ subnet_ip }}"
+      - name: add firewall rule
+        command: "ip rule add from {{ subnet_ip }} table 200"
+      - name: add firewall route
+        command: "ip route add default via {{ address.split('/')[0]}} table 200"
 {% endraw %}
 {% endhighlight yml %}
