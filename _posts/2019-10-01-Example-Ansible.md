@@ -1,30 +1,12 @@
 ---
 layout: single
 classes: wide
-title: "A Simple Demo: Part 1 Ansible"
-description: "Part 1 in a simple series on DevOps tooling."
+title: "Media Center Series Part 1: Install Docker With Ansible"
+description: "Using Anisble to provision Docker and Docker Compose"
 categories:
   - Projects
 ---
-This post will demonstrate some DevOps tools with a *simple application of no value*.
-
-The end result of this series we will have:
-  * [Debian](https://www.debian.org/) 10 as our OS
-  * [Ansible](https://www.ansible.com/) for machine provisioning and configuration management
-  * [Docker](https://www.docker.com/)  for containers
-  * [Docker Compose](https://docs.docker.com/compose/) for managing containers
-  * Containers:
-    * [nginx](https://hub.docker.com/_/nginx) as a reverse proxy
-    * [OpenVPN preconfigured for PIA](https://hub.docker.com/r/qmcgaw/private-internet-access/) (thats [Private Internet Access](https://www.privateinternetaccess.com/)) for a VPN. Update: I've now [replaced this with Mullvad and Wireguard]({% post_url _posts/2019-10-01-Example-Ansible %})
-    * [Deluge](https://hub.docker.com/r/linuxserver/deluge) as a torrent client
-    * [Sonarr](https://hub.docker.com/r/linuxserver/sonarr/) a "PVR for Usenet and BitTorrent users"
-    * [Radarr](https://hub.docker.com/r/linuxserver/radarr/) a Sonarr fork for movies
-    * [Jackett](https://hub.docker.com/r/linuxserver/jackett/) to provide support for popular trackers
-    * [Jellyfin](https://hub.docker.com/r/jellyfin/jellyfin/) as a media front end
-
-I'm just using this as an example for demonstration purposes of course.
-
-For testing I used a VPS on [Linode](https://www.linode.com/) running Debian 10.
+This series is a collection of notes from my experience setting up a media server. This first post covers using Ansible to setup [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) on the server.
 
 # Ansible
 The [full Ansible playbook](https://github.com/ciferkey/media/blob/master/ansible.yml) is available but I'm going to breakdown what went in to it. The file is designed so that you can drop it on to a box as a fresh root user and it will handle everything for you.
