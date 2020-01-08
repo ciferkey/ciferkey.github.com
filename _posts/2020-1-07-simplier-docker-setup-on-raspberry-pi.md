@@ -8,7 +8,7 @@ categories:
 ---
 
 In a previous post I discussed [using Ansible to install Docker and Docker Compose on Debian]({% post_url _posts/2019-10-01-Example-Ansible %}). Since then I've taken this and made some updates as I've gone and modified for use on a Raspberry Pi 4 instead of just testing on a Linode instance.
-
+ 
 # Changes
 
 ## Docker Installation
