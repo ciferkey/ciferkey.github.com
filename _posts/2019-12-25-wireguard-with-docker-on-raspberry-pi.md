@@ -16,6 +16,8 @@ The second reason is that Wireguard offers some compelling improvements over Ope
  - OpenVPN is very resource demanding on the RPi. The Model 4 Raspberry Pi has a new I/O architecture which can properly use Gigabit LAN. Unfortunately the CPU overhead for OpenVPN was high enough that it limited throughput. My Pi would regularly have a core pinned near 100% utilization from OpenVpn. In comparison [Wireguard's performance](https://www.wireguard.com/performance/#performance-roadmap) is considerably lighter leading to better throughput.
 - OpenVPN runs in user space where as Wireguard will be included in the kernel [eventually](https://www.phoronix.com/scan.php?page=news_item&px=WireGuard-Net-Next-Lands). For now this complicates things a bit since it has to be installed separately but once the changes land it will make setup much easier.
 
+*Update 1/29/2020:* Phoronix reports that (Wireguard was just merged into the 5.6 kernel)[https://www.phoronix.com/scan.php?page=news_item&px=Net-Next-For-Linux-5.6]! However it will be a while before 5.6 is the stable kernel for many distrobutions so the installation instructions below will still be needed for a while.
+
 In terms of researching how to set this up three articles were particularly useful:
 
 ## Installing Wireguard on Debian
