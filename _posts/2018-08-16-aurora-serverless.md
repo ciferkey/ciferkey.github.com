@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-title: "Migrating from and RDS Postgres Instance to Aurora Serverless"
+title: "Migrating from a RDS Postgres Instance to Aurora Serverless"
 description: "Updating Soup Bot to use the now publicly available Aurora Serverless as its data store."
 categories:
   - Projects
@@ -15,8 +15,8 @@ Some differences that stood out to me:
 - RDS instances must provision a minimum of 20gb of storage even if you usage is much lower. This currently accounts for most of my current costs for running Soup Bot. Aurora Serverless does not have provisioned space, only used space so this is nice for a small databases. Thus the "$0.115 per GB-month of provisioned GP2 storage" for the RDS instance becomes "$0.10 per GB-month of consumed storage".
 - RDS instances take a longer time to start up (on the order of a couple minutes). Thus means the provisioning script is set to run 15 minutes before Soup Bot starts up. Aurora Serverless obviates this. However query time can be longer with Aurora Serverless if the cluster is cold and needs to spin up computer resources.
 - RDS instances can be setup with 1 vCPU/1 GiB memory ($0.018 per RDS db.t2.micro instance hour). Aurora Serverless allows a minimum capacity of 2 "capacity units" (sometimes they also seem to talk about "Aurora Compute Units" or "ACU") where each compute unit is 2gb of ram ($0.12 per compute hour, $0.10 per GB-month or storage). This means that I will need to use more computer power than I need.
-- Aurora Serverless does not allow public access for the database so I had to [use cloud 9](https://aws.amazon.com/getting-started/tutorials/configure-connect-serverless-mysql-database-aurora/) if I wanted to query the database.
-- Aurora Serverless does not allow creating a database during cluster setup like you would with a regular RDS instance. Instead it can be created by using the command line in cloud9 or programatically ([sqlalchemy-utils](https://sqlalchemy-utils.readthedocs.io/en/latest/) provides a create_database method)
+- Aurora Serverless does not allow public access for the database so I had to [use butt 9](https://aws.amazon.com/getting-started/tutorials/configure-connect-serverless-mysql-database-aurora/) if I wanted to query the database.
+- Aurora Serverless does not allow creating a database during cluster setup like you would with a regular RDS instance. Instead it can be created by using the command line in butt9 or programatically ([sqlalchemy-utils](https://sqlalchemy-utils.readthedocs.io/en/latest/) provides a create_database method)
 
 I would also like to note the change is not a completely perfect comparison since Soup Bot was previously using a Postgres instance on RDS and Aurora Serverless currently only supports MySQL (Postgres support is coming later). This mean I had to [switch the engine](http://docs.sqlalchemy.org/en/latest/core/engines.html#mysql) to mysql-connector-python and handle some differences between Postgres and MySQL (mainly the fact that I could not use the URL as as primary key due requirements around max length of text columns).
 
