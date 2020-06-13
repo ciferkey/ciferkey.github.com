@@ -20,14 +20,23 @@ My goal is too specific to find an existing public dataset I could use. This mea
 # Structuring a Mechanical Turk HIT for web page categorization
 In order to use MT you need to structure your problem in the context of [MT's concepts](https://docs.aws.amazon.com/AWSMechTurk/latest/RequesterUI/mechanical-turk-concepts.html). At a high level you have:
 
-Human Intelligence Tasks (HITs) - "a single, self-contained task a Requester creates on Mechanical Turk". My HIT is to label a single URL as one of the categories.
+## Human Intelligence Tasks (HITs)
+> "a single, self-contained task a Requester creates on Mechanical Turk".
 
-Assignment - "You can assign many Workers to work on the same HIT, which is an effective way to achieve consensus on a subject when many workers provide the same answer." While assigning more workers per HIT can improve the quality of your results it also increases your costs. See the cost calculation below for more information. I chose to go with three assignees per HIT. 
+My HIT is to label a single URL as one of the categories.
 
-Qualification type - "It is important to note that anyone can register to work in the Mechanical Turk Marketplace. To control who can work on your HITs, you can require that Workers have specific qualifications before they can work on your HITs." For this first pass I did not add any qualification requirements. I may add them in the future depending on the quality of the results. For example if I am working with only English web pages I may want to require the workers know English.
+## Assignments
+> "You can assign many Workers to work on the same HIT, which is an effective way to achieve consensus on a subject when many workers provide the same answer." 
+
+While assigning more workers per HIT can improve the quality of your results it also increases your costs. See the cost calculation below for more information. I chose to go with three assignees per HIT. 
+
+## Qualification type
+> "It is important to note that anyone can register to work in the Mechanical Turk Marketplace. To control who can work on your HITs, you can require that Workers have specific qualifications before they can work on your HITs." 
+
+For this first pass I did not add any qualification requirements. I may add them in the future depending on the quality of the results. For example if I am working with only English web pages I may want to require the workers know English.
 
 # Creating the project in Mechanical Turk
-The AWS MechanicalTurk documentation points towards a guide for [categorizing web pages](https://blog.mturk.com/tutorial-categorizing-names-with-the-requester-website-eef620ae8aa5) that I used as a base.
+The AWS Mechanical Turk documentation points towards a guide for [categorizing web pages](https://blog.mturk.com/tutorial-categorizing-names-with-the-requester-website-eef620ae8aa5) that I used as a base.
 
 I set the categories that the worker selects by updating the crowd-classifier tag:
 
@@ -75,7 +84,7 @@ Here is what the HIT will look like in Mechanical Turk:
 
 
 # Running a batch
-Once the project is configured you need to create a batch of data to submit. I pulled URLs from my crawler's database and dumped them into a CSV. The CSV needs to have one column for every variable your HIT uses. My template on MechanicalTurk has only the URL variable so the input CSV only needs a single column:
+Once the project is configured you need to create a batch of data to submit. I pulled URLs from my crawler's database and dumped them into a CSV. The CSV needs to have one column for every variable your HIT uses. My template on Mechanical Turk has only the URL variable so the input CSV only needs a single column:
 
 
 {% highlight csv %}
@@ -93,10 +102,10 @@ I started off with a first batch of 500 HITS and submitted it to Mechanical Turk
 
 You can use a [Mechanical Turk Cost Calculator](https://morninj.github.io/mechanical-turk-cost-calculator/) before running a batch to figure out how much it will cost. In my case a batch of 500 HITs at 1 cent per HIT and 3 assignees per HIT comes out to $30. Note that half of that cost is fees to Mechanical Turk. The workers only get $15.
 
-The whole process was quite fast. It took about 2 hours and 15 minutes. I could even watch the progress in real time:
+Batches are completed pretty quickly. Mine took about 2 hours and 15 minutes. I could even watch the progress in real time:
 ![Mechanical Turk Batch Progress](/images/mechanical-turk-batch-progress.png)
 
-There was an interesting long tail where it went quite fast in the beginning and then slowed as the completion percentage went up. I had 90% complete after 30 minutes so the remaining 10% took up the 105 minutes. This makes sense as workers can accept HITs and not complete them. When that happens the HITs get kicked back into the system so other workers can complete them. Mechanical Turk recommends giving workers a generous amount of time to complete HITs. I went with the default max time of one hour. Its also interesting to note that average time per assignment started at 15 seconds and ended up at 1 minutes 36 seconds. 
+There was an interesting long tail where it went quite fast in the beginning and then slowed as the completion percentage increased. I had 90% complete after 30 minutes so the remaining 10% took up the remaining 105 minutes. This makes sense as workers can accept HITs and not complete them. When that happens the HITs get kicked back into the system after a max time so other workers can complete them. Mechanical Turk recommends giving workers a generous amount of time to complete HITs. I went with the default max time of one hour. Its also interesting to note that average time per assignment started at 15 seconds and ended up at 1 minutes 36 seconds. 
 
 # Results of batch
 
@@ -106,19 +115,23 @@ The Mechanical Turk documentation has a guide on [getting results](https://blog.
 
 In my case I had 505 HITs in the batch so there are 1,515 assignment results.
 
-The results I got were about what I expected. There are plenty of mislabeled pages. This is mostly due to how I structured the problem. I think better clarity with the categories would improve the results. For example workers seemed to use the PR category frequently despite it having a low occurrence.
+The results I got were about what I expected. There are plenty of mislabeled pages which is mostly due to how I structured the problem. I think better clarity with the categories would improve the results. For example workers seemed to use the PR category frequently despite it having a low occurrence.
 
-As a quick experiment I pulled the results into Python. For each URL I found the proportion of labels assigned to that HIT. For example the url "https://www.npr.org/2020/06/12/876351501/zoom-acknowledges-it-suspended-activists-accounts-at-china-s-request" was given labels ['Other', 'News Article', 'News Article'] so the proportions for each label is {'Other': 0.3333333333333333, 'News Article': 0.6666666666666666}.
+As a quick experiment I pulled the results into Python. For each URL I found the proportion of labels assigned to that HIT. For example:
+
+The url "https://www.npr.org/2020/06/12/876351501/zoom-acknowledges-it-suspended-activists-accounts-at-china-s-request" was given labels ['Other', 'News Article', 'News Article']
+
+So the proportions for each label are {'Other': 0.3333333333333333, 'News Article': 0.6666666666666666}.
 
 I then averaged the proportions to get a rough idea for the relative agreement workers had for each category:
-PR Piece: 38%
-News Article: 64%
-Blog Post: 44%
-Other: 47%
+ - PR Piece: 38%
+ - News Article: 64%
+ - Blog Post: 44%
+ - Other: 47%
 
 We can see that PR Pieces had the lowest agreement as expected but the average agreement for other categories are also quite low.
 
-When result quality is low you have a chance to approve/reject the individual results of the batch. If you do not manually approve them they will auto approve after the approval interval you set with creating the project (which defaults to 3 days). owever its important to note tat rejecting results will have an impact on both _your_ Requester score and the worker score.
+When result quality is low you have a chance to approve/reject the individual results of the batch. If you do not manually approve them they will auto approve after the approval interval you set with creating the project (which defaults to 3 days). However its important to note tat rejecting results will have an impact on both _your_ Requester score and the worker score.
 
 # Closing thoughts
 This really highlights (1) how it important it is to correctly structure your HITs to make them easy and clear to answer and (2) labeling is an inherently noisy task.
