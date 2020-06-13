@@ -2,10 +2,11 @@
 layout: single
 classes: wide
 title: "Labeling Web Page Category with Mechanical Turk"
-description: "Setting up a project on Mechanical Turk to label categories of web pages.
+description: "Setting up a project on Mechanical Turk to label categories of web pages."
 categories:
   - Projects
 ---
+
 
 # Why use Mechanical Turk?
 I wanted to experiment with classifying whether a web page is an article or not. The categories I want to label are:
