@@ -18,6 +18,8 @@ The second reason is that Wireguard offers some compelling improvements over Ope
 
 *Update 1/29/2020:* Phoronix reports that (Wireguard was just merged into the 5.6 kernel)[https://www.phoronix.com/scan.php?page=news_item&px=Net-Next-For-Linux-5.6]! However it will be a while before 5.6 is the stable kernel for many distrobutions so the installation instructions below will still be needed for a while.
 
+*Update 7/24/2020:* While Debian 11 Bullseye isn't releasing until 2021 its features are already being backported to Buster. Wireguard can not be pulled in from the buster-backports repo rather than having to build it!
+
 In terms of researching how to set this up three articles were particularly useful:
 
 ## Installing Wireguard on Debian
@@ -69,6 +71,45 @@ The playbook assumes there is a file called "mullvad.conf" in the same directory
 Note the we have to split the address on "," since the INI entry contains both the ipv4 and ipv6 address and we only want the first half
 
 ## Installing Wireguard
+*Update:*
+Wireguard has been backported from Bullseye to buster and can be [installed on a Pi](https://raspberrypi.stackexchange.com/questions/109452/wireguard-installation/109521#109521):
+
+{% highlight bash %}
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC 648ACFD622F3D138
+
+echo 'deb http://httpredir.debian.org/debian buster-backports main contrib non-free' | sudo tee -a /etc/apt/sources.list.d/debian-backports.list
+
+sudo apt update
+sudo apt install wireguard
+{% endhighlight %}
+
+We can achieve this in Ansible with the following:
+{% highlight yml %}
+{% raw %}
+      - name: Add first key
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 04EE7237B7D453EC
+      - name: Add second key
+        apt_key:
+          keyserver: keyserver.ubuntu.com
+          id: 648ACFD622F3D138
+      - name: enable unstable
+        lineinfile:
+          path: /etc/apt/sources.list.d/debian-backports.list
+          create: yes
+          line: deb http://httpredir.debian.org/debian buster-backports main contrib non-free
+      - name: Install deps
+        apt:
+          pkg:
+            - wireguard
+            - wireguard-tools
+            - resolvconf
+          update_cache: yes
+{% endraw %}
+{% endhighlight yml %}
+
+*Original Version:*
 The installation process is basically a combination of the two posts on installing, but replacing command with ansible tasks to clean it up:
 
 {% highlight yml %}
