@@ -18,7 +18,7 @@ The second reason is that Wireguard offers some compelling improvements over Ope
 
 *Update 1/29/2020:* Phoronix reports that [Wireguard was just merged into the 5.6 kernel](https://www.phoronix.com/scan.php?page=news_item&px=Net-Next-For-Linux-5.6)! However it will be a while before 5.6 is the stable kernel for many distrobutions so the installation instructions below will still be needed for a while.
 
-*Update 7/24/2020:* While Debian 11 Bullseye isn't releasing until 2021 its features are already being backported to Buster. Wireguard can not be pulled in from the buster-backports repo rather than having to build it!
+*Update 7/24/2020:* While Debian 11 Bullseye isn't releasing until 2021 its features are already being backported to Buster. Wireguard can now be pulled in from the buster-backports repo rather than having to build it!
 
 In terms of researching how to set this up three articles were particularly useful:
 
