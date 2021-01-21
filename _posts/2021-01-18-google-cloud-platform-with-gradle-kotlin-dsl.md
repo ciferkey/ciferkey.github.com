@@ -236,9 +236,7 @@ appengineStage.dependsOn test
 [This answer](https://stackoverflow.com/a/60225081/564606) on Stack Overflow explains the syntax I used for getting the plugin's deploy task and stageStandard task to depend on the test task.
 
 One tricky part is figuring out the correct type to supply to withType. The good news is if you get the type wrong gradle will complain with something like:
-{% highlight %}
 The task 'appengineDeploy' (com.google.cloud.tools.gradle.appengine.core.DeployTask) is not a subclass of the given type (org.gradle.api.tasks.compile.JavaCompile).
-{% endhighlight %}
 
 So you can figure it out through trial and error...
 
