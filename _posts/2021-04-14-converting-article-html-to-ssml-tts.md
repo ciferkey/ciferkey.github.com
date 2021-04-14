@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-title: "Automatic Conversion of Article HTML to SSML For Text-To-Speech"
+title: "Automatic Conversion of Article HTML to SSML For Text To Speech"
 description: "Examples of using Kotlin to convert articles into SSML For Text-To-Speech in a new Podcast web app I'm working on."
 categories:
   - Projects
@@ -89,7 +89,6 @@ One distinction to make is that the NodeVisitor works on Nodes not Elements. Ele
 
 Here is some output demonstrating the order the nodes are visited in the HTML fragment from above:
 
-{% highlight %}
 {% raw %}
 Starting <body>
 	Starting <div>
@@ -143,7 +142,6 @@ Starting <body>
 			End TextNode
 		Ending </aside>
 {% endraw %}
-{% endhighlight %}
 
 You will notice that TextNodes are visited after we first enter an Element and before we leave the eElement. This means that we can:
  - Emit the start of an XML node when we enter an Element that maps to a SSML tag. For example creating a p tag when we enter a p tag.
