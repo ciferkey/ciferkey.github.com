@@ -330,6 +330,17 @@
     };
     version = "2.13.0";
   };
+  jekyll-include-cache = {
+    dependencies = ["jekyll"];
+    groups = ["jekyll_plugins"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "01d2l6qrmjc42664ns83cv36jbvalcxqbkmj5i22fakka7jvkm67";
+      type = "gem";
+    };
+    version = "0.2.1";
+  };
   jekyll-mentions = {
     dependencies = ["html-pipeline" "jekyll"];
     groups = ["default" "jekyll_plugins"];
