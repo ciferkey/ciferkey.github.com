@@ -89,7 +89,8 @@ One distinction to make is that the NodeVisitor works on Nodes not Elements. Ele
 
 Here is some output demonstrating the order the nodes are visited in the HTML fragment from above:
 
-{% raw markdown %}
+{% highlight bash %}
+{% raw %}
 Starting <body>
 	Starting <div>
 		Found TextNode:   
@@ -142,6 +143,7 @@ Starting <body>
 			End TextNode
 		Ending </aside>
 {% endraw %}
+{% endhighlight %}
 
 You will notice that TextNodes are visited after we first enter an Element and before we leave the eElement. This means that we can:
  - Emit the start of an XML node when we enter an Element that maps to a SSML tag. For example creating a p tag when we enter a p tag.
