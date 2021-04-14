@@ -89,7 +89,7 @@ One distinction to make is that the NodeVisitor works on Nodes not Elements. Ele
 
 Here is some output demonstrating the order the nodes are visited in the HTML fragment from above:
 
-{% raw %}
+{% raw markdown %}
 Starting <body>
 	Starting <div>
 		Found TextNode:   
