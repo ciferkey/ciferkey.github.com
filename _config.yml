@@ -59,6 +59,8 @@ defaults:
     values:
       comments: true
       author_profile: true
+      show_date: true
+      read_time: true
 
 comments:
   provider: "disqus"
